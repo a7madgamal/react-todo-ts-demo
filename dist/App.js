@@ -1,0 +1,65 @@
+Object.defineProperty(exports, "__esModule", {value: true});
+require("./App.css");
+const TaskCreator_1 = require("./components/TaskCreator");
+const react_1 = require("react");
+const TaskTable_1 = require("./components/TaskTable");
+const VisibilityControl_1 = require("./components/VisibilityControl");
+const Container_1 = require("./components/Container");
+function App() {
+  const [tasksItems, setTaskItems] = (0, react_1.useState)([]);
+  const [showCompleted, setShowCompleted] = (0, react_1.useState)(false);
+  function createTask(taskName) {
+    if (!tasksItems.find((task) => task.name === taskName)) {
+      setTaskItems([...tasksItems, {name: taskName, done: false}]);
+    } else {
+      alert("The task already exist");
+    }
+  }
+  const toggleTask = (task) => {
+    setTaskItems(
+      tasksItems.map((t) =>
+        t.name === task.name
+          ? Object.assign(Object.assign({}, t), {done: !t.done})
+          : t
+      )
+    );
+  };
+  (0, react_1.useEffect)(() => {
+    let data = localStorage.getItem("tasks");
+    if (data) {
+      setTaskItems(JSON.parse(data));
+    }
+  }, []);
+  const cleanTasks = () => {
+    setTaskItems(tasksItems.filter((task) => !task.done));
+    setShowCompleted(false);
+  };
+  (0, react_1.useEffect)(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasksItems));
+  }, [tasksItems]);
+  return React.createElement(
+    "main",
+    {className: "bg-dark vh-100 text-white"},
+    React.createElement(
+      Container_1.Container,
+      null,
+      React.createElement(TaskCreator_1.TaskCreator, {createTask: createTask}),
+      React.createElement(TaskTable_1.TaskTable, {
+        tasks: tasksItems,
+        toggleTask: toggleTask,
+      }),
+      React.createElement(VisibilityControl_1.VisibilityControl, {
+        setShowCompleted: (checked) => setShowCompleted(checked),
+        cleanTasks: cleanTasks,
+        isChecked: showCompleted,
+      }),
+      showCompleted === true &&
+        React.createElement(TaskTable_1.TaskTable, {
+          tasks: tasksItems,
+          toggleTask: toggleTask,
+          showCompleted: showCompleted,
+        })
+    )
+  );
+}
+exports.default = App;
