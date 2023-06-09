@@ -12,7 +12,7 @@ export const TaskTable: FC<TaskTableProps> = ({
   toggleTask,
   showCompleted = false,
 }) => {
-  const taskTableRows = (doneValue) => {
+  const taskTableRows = (doneValue: boolean) => {
     return tasks
       .filter((task) => task.done === doneValue)
       .map((task) => (
