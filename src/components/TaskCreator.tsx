@@ -1,9 +1,9 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export const TaskCreator = ({createTask}) => {
-  const [newTaskName, setNewTaskName] = useState();
+  const [newTaskName, setNewTaskName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,6 +11,7 @@ export const TaskCreator = ({createTask}) => {
     localStorage.setItem("tasks", newTaskName);
     setNewTaskName("");
   };
+
   return (
     <form onSubmit={handleSubmit} className="my-2 row">
       <div className="col-9">
