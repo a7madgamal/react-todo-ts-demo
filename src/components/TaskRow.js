@@ -1,7 +1,7 @@
-export const TaskRow = ({ task, toggleTask }) => {
+export const TaskRow = ({task, toggleTask}) => {
   return (
     <tr>
-      <td className='d-flex justify-content-between'>
+      <td className="d-flex justify-content-between">
         {task.name}
         <input
           type="checkbox"

@@ -1,6 +1,6 @@
-import { TaskRow } from "./TaskRow";
+import {TaskRow} from "./TaskRow";
 
-export const TaskTable = ({ tasks, toggleTask, showCompleted = false }) => {
+export const TaskTable = ({tasks, toggleTask, showCompleted = false}) => {
   const taskTableRows = (doneValue) => {
     return tasks
       .filter((task) => task.done === doneValue)
