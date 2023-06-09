@@ -1,11 +1,15 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import React, {useState} from "react";
+import React, {useState, FC} from "react";
 
-export const TaskCreator = ({createTask}) => {
+type TaskCreatorProps = {
+  createTask: (newTaskName: string) => void;
+};
+
+export const TaskCreator: FC<TaskCreatorProps> = ({createTask}) => {
   const [newTaskName, setNewTaskName] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     createTask(newTaskName);
     localStorage.setItem("tasks", newTaskName);

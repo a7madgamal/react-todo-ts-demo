@@ -1,6 +1,12 @@
-import React from "react";
+import React, {FC} from "react";
 
-export const VisibilityControl = ({
+type VisibilityControlProps = {
+  setShowCompleted: (isCompleted: boolean) => void;
+  cleanTasks: () => void;
+  isChecked: boolean;
+};
+
+export const VisibilityControl: FC<VisibilityControlProps> = ({
   setShowCompleted,
   cleanTasks,
   isChecked,

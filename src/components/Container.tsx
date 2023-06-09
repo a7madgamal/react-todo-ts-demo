@@ -1,6 +1,10 @@
-import React from "react";
+import React, {FC, ReactNode} from "react";
 
-export const Container = ({children}) => {
+type ContainerProps = {
+  children: ReactNode;
+};
+
+export const Container: FC<ContainerProps> = ({children}) => {
   return (
     <div className="container p-4">
       <div className="col-md-4 offset-md-4">{children}</div>

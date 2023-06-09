@@ -1,6 +1,16 @@
-import React from "react";
+import React, {FC} from "react";
 
-export const TaskRow = ({task, toggleTask}) => {
+export type Task = {
+  name: string;
+  done: boolean;
+};
+
+type TaskRowProps = {
+  task: Task;
+  toggleTask: (newTask: Task) => void;
+};
+
+export const TaskRow: FC<TaskRowProps> = ({task, toggleTask}) => {
   return (
     <tr>
       <td className="d-flex justify-content-between">

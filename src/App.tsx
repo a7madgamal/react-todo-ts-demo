@@ -5,12 +5,13 @@ import {useState, useEffect} from "react";
 import {TaskTable} from "./components/TaskTable";
 import {VisibilityControl} from "./components/VisibilityControl";
 import {Container} from "./components/Container";
+import {Task} from "./components/TaskRow";
 
 function App() {
-  const [tasksItems, setTaskItems] = useState([]);
+  const [tasksItems, setTaskItems] = useState<Task[]>([]);
   const [showCompleted, setShowCompleted] = useState(false);
 
-  function createTask(taskName) {
+  function createTask(taskName: string) {
     if (!tasksItems.find((task) => task.name === taskName)) {
       setTaskItems([...tasksItems, {name: taskName, done: false}]);
     } else {
@@ -18,7 +19,7 @@ function App() {
     }
   }
 
-  const toggleTask = (task) => {
+  const toggleTask = (task: Task) => {
     setTaskItems(
       tasksItems.map((t) => (t.name === task.name ? {...t, done: !t.done} : t))
     );
