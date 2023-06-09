@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import {TaskCreator} from "./components/TaskCreator";
 import {useState, useEffect} from "react";
 import {TaskTable} from "./components/TaskTable";
